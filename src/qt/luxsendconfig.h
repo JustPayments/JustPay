@@ -5,25 +5,25 @@
 
 namespace Ui
 {
-class LuxsendConfig;
+class JustPaysendConfig;
 }
 class WalletModel;
 
 /** Multifunctional dialog to ask for passphrases. Used for encryption, unlocking, and changing the passphrase.
  */
-class LuxsendConfig : public QDialog
+class JustPaysendConfig : public QDialog
 {
     Q_OBJECT
 
 public:
-    LuxsendConfig(QWidget* parent = 0);
-    ~LuxsendConfig();
+    JustPaysendConfig(QWidget* parent = 0);
+    ~JustPaysendConfig();
 
     void setModel(WalletModel* model);
 
 
 private:
-    Ui::LuxsendConfig* ui;
+    Ui::JustPaysendConfig* ui;
     WalletModel* model;
     void configure(bool enabled, int coins, int rounds);
 

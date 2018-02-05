@@ -80,12 +80,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your LUX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your JUSTPAY addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>These are your LUX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your JUSTPAY addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -221,7 +221,7 @@
     </message>
     <message>
         <location line="+9"/>
-        <source>LUX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your LUXs from being stolen by malware infecting your computer.</source>
+        <source>JUSTPAY will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your JUSTPAYs from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <location line="+0"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LUX&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR JUSTPAY&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -307,7 +307,7 @@
     </message>
     <message>
         <location line="+6"/>
-        <source>Enter a Lux Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <source>Enter a JustPay Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -318,7 +318,7 @@
     </message>
     <message>
         <location line="-355"/>
-        <source>The LUX address to sign the message with</source>
+        <source>The JUSTPAY address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -360,7 +360,7 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this LUX address</source>
+        <source>Sign the message to prove you own this JUSTPAY address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -391,12 +391,12 @@
     </message>
     <message>
         <location line="+25"/>
-        <source>The LUX address the message was signed with</source>
+        <source>The JUSTPAY address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+29"/>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
+        <source>Verify the message to ensure it was signed with the specified JUSTPAY address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -771,17 +771,17 @@
     <message>
         <location line="-396"/>
         <location line="+831"/>
-        <source>LUX Core</source>
+        <source>JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-652"/>
-        <source>Send coins to a LUX address</source>
+        <source>Send coins to a JUSTPAY address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>Request payments (generates QR codes and lux: URIs)</source>
+        <source>Request payments (generates QR codes and justpay: URIs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -796,27 +796,27 @@
     </message>
     <message>
         <location line="+29"/>
-        <source>&amp;About LUX Core</source>
+        <source>&amp;About JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about LUX Core</source>
+        <source>Show information about JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>Modify configuration options for LUX</source>
+        <source>Modify configuration options for JUSTPAY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>Sign messages with your LUX addresses to prove you own them</source>
+        <source>Sign messages with your JUSTPAY addresses to prove you own them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified LUX addresses</source>
+        <source>Verify messages to ensure they were signed with specified JUSTPAY addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <location line="+10"/>
-        <source>Open a LUX: URI or payment request</source>
+        <source>Open a JUSTPAY: URI or payment request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -871,17 +871,17 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>Show the LUX Core help message to get a list with possible LUX command-line options</source>
+        <source>Show the JUSTPAY Core help message to get a list with possible JUSTPAY command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+201"/>
-        <source>LUX Core client</source>
+        <source>JUSTPAY Core client</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location line="+190"/>
-        <source>%n active connection(s) to LUX network</source>
+        <source>%n active connection(s) to JUSTPAY network</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -1077,7 +1077,7 @@ Address: %4
     </message>
     <message>
         <location filename="../blockexplorer.cpp" line="+473"/>
-        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (lux.conf).</source>
+        <source>Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (justpay.conf).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1456,7 +1456,7 @@ Address: %4
     </message>
     <message>
         <location line="+67"/>
-        <source>The entered address &quot;%1&quot; is not a valid LUX address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid JUSTPAY address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1512,7 +1512,7 @@ Address: %4
     </message>
     <message>
         <location line="+0"/>
-        <source>LUX Core</source>
+        <source>JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1523,7 +1523,7 @@ Address: %4
     </message>
     <message>
         <location line="+4"/>
-        <source>About LUX Core</source>
+        <source>About JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1581,17 +1581,17 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Welcome to LUX Core.</source>
+        <source>Welcome to JUSTPAY Core.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>As this is the first time the program is launched, you can choose where LUX Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where JUSTPAY Core will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>LUX Core will download and store a copy of the LUX block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>JUSTPAY Core will download and store a copy of the JUSTPAY block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1606,7 +1606,7 @@ Address: %4
     </message>
     <message>
         <location filename="../intro.cpp" line="+77"/>
-        <source>LUX Core</source>
+        <source>JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1809,8 +1809,8 @@ Address: %4
     </message>
     <message>
         <location line="+16"/>
-        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other LUX addresses after it matures.
-To Add: enter percentage to give and LUX address to add to the MultiSend vector.
+        <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other JUSTPAY addresses after it matures.
+To Add: enter percentage to give and JUSTPAY address to add to the MultiSend vector.
 To Delete: Enter address to delete and press delete.
 MultiSend will not be activated unless you have clicked Activate</source>
         <translation type="unfinished"></translation>
@@ -1975,12 +1975,12 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>Use 2 separate masternodes to mix funds up to 10000 LUX</source>
+        <source>Use 2 separate masternodes to mix funds up to 10000 JUSTPAY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>Use 8 separate masternodes to mix funds up to 10000 LUX</source>
+        <source>Use 8 separate masternodes to mix funds up to 10000 JUSTPAY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1990,12 +1990,12 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>This option is the quickest and will cost about ~0.025 LUX to anonymize 10000 LUX</source>
+        <source>This option is the quickest and will cost about ~0.025 JUSTPAY to anonymize 10000 JUSTPAY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>This option is moderately fast and will cost about 0.05 LUX to anonymize 10000 LUX</source>
+        <source>This option is moderately fast and will cost about 0.05 JUSTPAY to anonymize 10000 JUSTPAY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2005,7 +2005,7 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+13"/>
-        <source>0.1 LUX per 10000 LUX you anonymize.</source>
+        <source>0.1 JUSTPAY per 10000 JUSTPAY you anonymize.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2017,17 +2017,17 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="-27"/>
-        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening LUX&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to basic (%1 and 2 rounds). You can change this at any time by opening JUSTPAY&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+14"/>
-        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening LUX&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to high (%1 and 8 rounds). You can change this at any time by opening JUSTPAY&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+14"/>
-        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening LUX&apos;s configuration screen.</source>
+        <source>Obfuscation was successfully set to maximum (%1 and 16 rounds). You can change this at any time by opening JUSTPAY&apos;s configuration screen.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2103,7 +2103,7 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+33"/>
-        <source>Automatically open the LUX client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the JUSTPAY client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2128,12 +2128,12 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="-179"/>
-        <source>Automatically start LUX after logging in to the system.</source>
+        <source>Automatically start JUSTPAY after logging in to the system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start LUX on system login</source>
+        <source>&amp;Start JUSTPAY on system login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2153,7 +2153,7 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+15"/>
-        <source>Amount of LUX to keep anonymized</source>
+        <source>Amount of JUSTPAY to keep anonymized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2188,13 +2188,13 @@ Please check the address and try again.</source>
     </message>
     <message>
         <location line="+192"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting LUX.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting JUSTPAY.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/lux-project/lux-project-translations</source>
+https://www.transifex.com/justpay-project/justpay-project-translations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2204,7 +2204,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+17"/>
-        <source>Connect to the LUX network through a SOCKS5 proxy.</source>
+        <source>Connect to the JUSTPAY network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2401,7 +2401,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
         <location line="+10"/>
         <location line="+1015"/>
         <location line="+93"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LUX network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the JUSTPAY network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2456,7 +2456,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+27"/>
-        <source>0 LUX / 0 Rounds</source>
+        <source>0 JUSTPAY / 0 Rounds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2688,12 +2688,12 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="-108"/>
-        <source>Cannot start lux: click-to-pay handler</source>
+        <source>Cannot start justpay: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+114"/>
-        <source>URI cannot be parsed! This can be caused by an invalid LUX address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid JUSTPAY address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2801,7 +2801,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+113"/>
-        <source>Enter a LUX address (e.g. %1)</source>
+        <source>Enter a JUSTPAY address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2990,7 +2990,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+149"/>
-        <source>Open the LUX debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the JUSTPAY debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3202,7 +3202,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="-36"/>
-        <source>Welcome to the LUX RPC console.</source>
+        <source>Welcome to the JUSTPAY RPC console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3298,12 +3298,12 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="-37"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the LUX network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the JUSTPAY network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+23"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the LUX network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the JUSTPAY network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3597,7 +3597,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+7"/>
-        <source>0 LUX</source>
+        <source>0 JUSTPAY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3657,18 +3657,18 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="-165"/>
-        <source>If the custom fee is set to 1000 uLUXs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uLUXs in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 uLUXs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 uJUSTPAYs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uJUSTPAYs in fee,&lt;br /&gt;while &quot;at least&quot; pays 1000 uJUSTPAYs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>If the custom fee is set to 1000 uLUXs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uLUXs in fee,&lt;br /&gt;while &quot;total at least&quot; pays 1000 uLUXs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 uJUSTPAYs and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 uJUSTPAYs in fee,&lt;br /&gt;while &quot;total at least&quot; pays 1000 uJUSTPAYs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+33"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for LUX transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for JUSTPAY transactions than the network can process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3801,7 +3801,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+614"/>
-        <source>Warning: Invalid LUX address</source>
+        <source>Warning: Invalid JUSTPAY address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3940,7 +3940,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>The LUX address to send the payment to</source>
+        <source>The JUSTPAY address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3994,7 +3994,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+10"/>
-        <source>A message that was attached to the LUX: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LUX network.</source>
+        <source>A message that was attached to the JUSTPAY: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the JUSTPAY network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4029,7 +4029,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+42"/>
-        <source>LUX Core is shutting down...</source>
+        <source>JUSTPAY Core is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4057,7 +4057,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>The LUX address to sign the message with</source>
+        <source>The JUSTPAY address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4099,17 +4099,17 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this LUX address</source>
+        <source>Sign the message to prove you own this JUSTPAY address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+106"/>
-        <source>The LUX address the message was signed with</source>
+        <source>The JUSTPAY address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+37"/>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
+        <source>Verify the message to ensure it was signed with the specified JUSTPAY address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4224,7 +4224,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+36"/>
-        <source>LUX Core</source>
+        <source>JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4244,7 +4244,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>The LUX Core developers</source>
+        <source>The JUSTPAY Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4957,7 +4957,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     <message>
         <location line="-18"/>
         <location line="+9"/>
-        <source>SwiftTX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 LUX.</source>
+        <source>SwiftTX doesn&apos;t support sending values that high yet. Transactions are currently limited to %1 JUSTPAY.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5010,9 +5010,9 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
 </context>
 <context>
-    <name>lux-core</name>
+    <name>justpay-core</name>
     <message>
-        <location filename="../luxstrings.cpp" line="+12"/>
+        <location filename="../justpaystrings.cpp" line="+12"/>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation type="unfinished">(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</translation>
     </message>
@@ -5043,7 +5043,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Cannot obtain a lock on data directory %s. LUX Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. JUSTPAY Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5068,7 +5068,7 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Disable all LUX specific functionality (Masternodes, Obfuscation, SwiftTX, Budgeting) (0-1, default: %u)</source>
+        <source>Disable all JUSTPAY specific functionality (Masternodes, Obfuscation, SwiftTX, Budgeting) (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5118,12 +5118,12 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>Fees (in LUX/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <source>Fees (in JUSTPAY/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Fees (in LUX/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <source>Fees (in JUSTPAY/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5248,22 +5248,22 @@ https://www.transifex.com/lux-project/lux-project-translations</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>To use luxd, or the -server option to lux-qt, you must set an rpcpassword in the configuration file:
+        <source>To use justpayd, or the -server option to justpay-qt, you must set an rpcpassword in the configuration file:
 %s
 It is recommended you use the following random password:
-rpcuser=luxrpc
+rpcuser=justpayrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;JUSTPAY Alert&quot; admin@foo.com
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>Unable to bind to %s on this computer. LUX Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. JUSTPAY Core is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5273,12 +5273,12 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+2"/>
-        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 LUX.</source>
+        <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 JUSTPAY.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Unable to locate enough funds for this transaction that are not equal 10000 LUX.</source>
+        <source>Unable to locate enough funds for this transaction that are not equal 10000 JUSTPAY.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5298,7 +5298,7 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong LUX Core will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong JUSTPAY Core will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5490,7 +5490,7 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Copyright (C) 2015-%i The LUX Core Developers</source>
+        <source>Copyright (C) 2015-%i The JUSTPAY Core Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5580,7 +5580,7 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of LUX Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of JUSTPAY Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5645,7 +5645,7 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Fee (in LUX/kB) to add to transactions you send (default: %s)</source>
+        <source>Fee (in JUSTPAY/kB) to add to transactions you send (default: %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5720,7 +5720,7 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. LUX Core is shutting down.</source>
+        <source>Initialization sanity check failed. JUSTPAY Core is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5800,7 +5800,7 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Keep N LUX anonymized (default: %u)</source>
+        <source>Keep N JUSTPAY anonymized (default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6425,7 +6425,7 @@ for example: alertnotify=echo %%s | mail -s &quot;LUX Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart LUX Core to complete</source>
+        <source>Wallet needed to be rewritten: restart JUSTPAY Core to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

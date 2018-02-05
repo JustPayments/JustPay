@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lux-config.h"
+#include "config/justpay-config.h"
 #endif
 
 #include "optionsdialog.h"
@@ -211,9 +211,9 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->thirdPartyTxUrls, OptionsModel::ThirdPartyTxUrls);
 
 
-    /* LuxSend Rounds */
+    /* JustPaySend Rounds */
     mapper->addMapping(ui->darksendRounds, OptionsModel::DarksendRounds);
-    mapper->addMapping(ui->anonymizeLux, OptionsModel::AnonymizeLuxAmount);
+    mapper->addMapping(ui->anonymizeJustPay, OptionsModel::AnonymizeJustPayAmount);
     mapper->addMapping(ui->showMasternodesTab, OptionsModel::ShowMasternodesTab);
 }
 

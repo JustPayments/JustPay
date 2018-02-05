@@ -62,12 +62,12 @@
         <translation>Indirizzi di ricezione</translation>
     </message>
     <message>
-        <source>These are your LUX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono gli indirizzi LUX per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
+        <source>These are your JUSTPAY addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questi sono gli indirizzi JUSTPAY per l'invio di pagamenti. Controlla sempre l'importo e l'indirizzo di ricezione prima di inviare valuta.</translation>
     </message>
     <message>
-        <source>These are your LUX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono gli indirizzi LUX per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
+        <source>These are your JUSTPAY addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono gli indirizzi JUSTPAY per la ricezione di pagamenti. Si raccomanda di utilizzare un indirizzo diverso per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,16 +176,16 @@
         <translation>Conferma cifratura portafoglio</translation>
     </message>
     <message>
-        <source>LUX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your LUXs from being stolen by malware infecting your computer.</source>
-        <translation>LUX verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi LUX dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
+        <source>JUSTPAY will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your JUSTPAYs from being stolen by malware infecting your computer.</source>
+        <translation>JUSTPAY verrà ora chiuso per completare il processo di cifratura. Ricorda che crittografare il tuo portafoglio non protegge completamente i tuoi JUSTPAY dal furto da parte di software malevoli che potrebbero infettare il tuo computer.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Confermi di voler crittografare il portafoglio?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LUX&lt;/b&gt;!</source>
-        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI LUX&lt;7b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR JUSTPAY&lt;/b&gt;!</source>
+        <translation>Attenzione: Se crittografi il portafoglio e poi perdi la parola d'ordine, &lt;b&gt;PERDERAI TUTTI I TUOI JUSTPAY&lt;7b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -239,16 +239,16 @@
         <translation>&amp;BIP 38 Criptato</translation>
     </message>
     <message>
-        <source>Enter a Lux Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
-        <translation>Inserisci un indirizzo Lux che desideri crittografare utilizzando BIP 38. Inserisci una passphrase nella casella centrale. Premi Cripta per calcolare la chiave privata crittografata.</translation>
+        <source>Enter a JustPay Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Inserisci un indirizzo JustPay che desideri crittografare utilizzando BIP 38. Inserisci una passphrase nella casella centrale. Premi Cripta per calcolare la chiave privata crittografata.</translation>
     </message>
     <message>
         <source>Address:</source>
         <translation>Indirizzo:</translation>
     </message>
     <message>
-        <source>The LUX address to sign the message with</source>
-        <translation>L'indirizzo LUX per firmare il messaggio con</translation>
+        <source>The JUSTPAY address to sign the message with</source>
+        <translation>L'indirizzo JUSTPAY per firmare il messaggio con</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -279,8 +279,8 @@
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LUX address</source>
-        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo LUX</translation>
+        <source>Sign the message to prove you own this JUSTPAY address</source>
+        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo JUSTPAY</translation>
     </message>
     <message>
         <source>Encrypt &amp;Key</source>
@@ -299,12 +299,12 @@
         <translation>Immettere la chiave privata codificata BIP 38. Inserire la passphrase nella casella centrale. Fare clic su Decripta Chiave per calcolare la chiave privata. Dopo che la chiave viene decrittata, cliccando su "Importa indirizzo" verrà aggiunta questa chiave privata al portafoglio.</translation>
     </message>
     <message>
-        <source>The LUX address the message was signed with</source>
-        <translation>L'indirizzo LUX con cui è stato firmato il messaggio</translation>
+        <source>The JUSTPAY address the message was signed with</source>
+        <translation>L'indirizzo JUSTPAY con cui è stato firmato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
-        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo LUX specificato </translation>
+        <source>Verify the message to ensure it was signed with the specified JUSTPAY address</source>
+        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo JUSTPAY specificato </translation>
     </message>
     <message>
         <source>Decrypt &amp;Key</source>
@@ -562,16 +562,16 @@
         <translation>Schede degli strumenti</translation>
     </message>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     <message>
-        <source>Send coins to a LUX address</source>
-        <translation>Invia monete all' indirizzo LUX</translation>
+        <source>Send coins to a JUSTPAY address</source>
+        <translation>Invia monete all' indirizzo JUSTPAY</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lux: URIs)</source>
-        <translation>Richiedi pagamenti (genera codici QR e lux: URIs)</translation>
+        <source>Request payments (generates QR codes and justpay: URIs)</source>
+        <translation>Richiedi pagamenti (genera codici QR e justpay: URIs)</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -582,20 +582,20 @@
         <translation>Esplora i masternodes</translation>
     </message>
     <message>
-        <source>Show information about LUX Core</source>
-        <translation>Visualizza informazioni su LUX Core</translation>
+        <source>Show information about JUSTPAY Core</source>
+        <translation>Visualizza informazioni su JUSTPAY Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for LUX</source>
-        <translation>Modifica le opzioni di configurazione per LUX</translation>
+        <source>Modify configuration options for JUSTPAY</source>
+        <translation>Modifica le opzioni di configurazione per JUSTPAY</translation>
     </message>
     <message>
-        <source>Sign messages with your LUX addresses to prove you own them</source>
-        <translation>Firma i messaggi con i tuoi indirizzi LUX per dimostrare di essere il proprietario </translation>
+        <source>Sign messages with your JUSTPAY addresses to prove you own them</source>
+        <translation>Firma i messaggi con i tuoi indirizzi JUSTPAY per dimostrare di essere il proprietario </translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LUX addresses</source>
-        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi LUX specifici</translation>
+        <source>Verify messages to ensure they were signed with specified JUSTPAY addresses</source>
+        <translation>Verifica i messaggi per assicurarsi che siano stati firmati con indirizzi JUSTPAY specifici</translation>
     </message>
     <message>
         <source>Encrypt and decrypt private keys using a passphrase</source>
@@ -606,16 +606,16 @@
         <translation>Impostazioni MultiSend</translation>
     </message>
     <message>
-        <source>Open a LUX: URI or payment request</source>
-        <translation>Apri un LUX: URI o richiesta di pagamento</translation>
+        <source>Open a JUSTPAY: URI or payment request</source>
+        <translation>Apri un JUSTPAY: URI o richiesta di pagamento</translation>
     </message>
     <message>
         <source>Block explorer window</source>
         <translation>Finestra Block Explorer</translation>
     </message>
     <message>
-        <source>Show the LUX Core help message to get a list with possible LUX command-line options</source>
-        <translation>Mostra il messaggio di aiuto LUX Core per ottenere un elenco con le possibili opzioni di riga di comando LUX</translation>
+        <source>Show the JUSTPAY Core help message to get a list with possible JUSTPAY command-line options</source>
+        <translation>Mostra il messaggio di aiuto JUSTPAY Core per ottenere un elenco con le possibili opzioni di riga di comando JUSTPAY</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -716,15 +716,15 @@ MultiSend: %1</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -849,8 +849,8 @@ MultiSend: %1</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The LUX address to sign the message with</source>
-        <translation>L'indirizzo LUX per firmare il messaggio con</translation>
+        <source>The JUSTPAY address to sign the message with</source>
+        <translation>L'indirizzo JUSTPAY per firmare il messaggio con</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -873,16 +873,16 @@ MultiSend: %1</translation>
         <translation>Copiare la firma corrente negli Appunti di sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LUX address</source>
-        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo LUX</translation>
+        <source>Sign the message to prove you own this JUSTPAY address</source>
+        <translation>Firmare il messaggio per dimostrare di possedere questo indirizzo JUSTPAY</translation>
     </message>
     <message>
-        <source>The LUX address the message was signed with</source>
-        <translation>L'indirizzo LUX con cui è stato firmato il messaggio</translation>
+        <source>The JUSTPAY address the message was signed with</source>
+        <translation>L'indirizzo JUSTPAY con cui è stato firmato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LUX address</source>
-        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo specificato LUX</translation>
+        <source>Verify the message to ensure it was signed with the specified JUSTPAY address</source>
+        <translation>Verificare il messaggio per assicurarsi che sia stato firmato con l'indirizzo specificato JUSTPAY</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -920,8 +920,8 @@ MultiSend: %1</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     </context>
 <context>
@@ -980,7 +980,7 @@ MultiSend: %1</translation>
     </message>
     </context>
 <context>
-    <name>lux-core</name>
+    <name>justpay-core</name>
     <message>
         <source>Error</source>
         <translation>Errore</translation>

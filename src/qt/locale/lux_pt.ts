@@ -58,12 +58,12 @@
         <translation>Endereços de recebimento</translation>
     </message>
     <message>
-        <source>These are your LUX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Esses são seus endereços LUX para enviar pagamentos. Sempre confira a quantidade e os endereços de destino antes de enviar moedas.</translation>
+        <source>These are your JUSTPAY addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Esses são seus endereços JUSTPAY para enviar pagamentos. Sempre confira a quantidade e os endereços de destino antes de enviar moedas.</translation>
     </message>
     <message>
-        <source>These are your LUX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Esses são seus endereços LUX para receber pagamentos. É recomendado usar um novo endereço para cada transação.</translation>
+        <source>These are your JUSTPAY addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Esses são seus endereços JUSTPAY para receber pagamentos. É recomendado usar um novo endereço para cada transação.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,16 +172,16 @@
         <translation>Confirmar encriptação da carteira</translation>
     </message>
     <message>
-        <source>LUX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your LUXs from being stolen by malware infecting your computer.</source>
-        <translation>LUX encerrará para terminar o processo de encriptação. Lembre-se que encriptar sua carteira não protege completamente suas LUXs contra roubo por malware infectando seu computador.</translation>
+        <source>JUSTPAY will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your JUSTPAYs from being stolen by malware infecting your computer.</source>
+        <translation>JUSTPAY encerrará para terminar o processo de encriptação. Lembre-se que encriptar sua carteira não protege completamente suas JUSTPAYs contra roubo por malware infectando seu computador.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Tem certeza que deseja encriptar sua carteira?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LUX&lt;/b&gt;!</source>
-        <translation>Atenção: Se você encriptar sua carteira e perder a senha, você &lt;B&gt;PERDERÁ TODA SUA LUX&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR JUSTPAY&lt;/b&gt;!</source>
+        <translation>Atenção: Se você encriptar sua carteira e perder a senha, você &lt;B&gt;PERDERÁ TODA SUA JUSTPAY&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -404,7 +404,7 @@
     </message>
     </context>
 <context>
-    <name>lux-core</name>
+    <name>justpay-core</name>
     <message>
         <source>Connect through SOCKS5 proxy</source>
         <translation>Conectar usando proxy SOCKS5</translation>

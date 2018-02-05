@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The JUSTPAY developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +41,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "LUX cannot be compiled without assertions."
+#error "JUSTPAY cannot be compiled without assertions."
 #endif
 
 #ifndef DEBUG_DUMP_STAKING_INFO_AddToBlockIndex
@@ -103,7 +103,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Lux Signed Message:\n";
+const string strMessageMagic = "JustPay Signed Message:\n";
 
 // Internal stuff
 namespace
@@ -2043,7 +2043,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("lux-scriptch");
+    RenameThread("justpay-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -5217,7 +5217,7 @@ static bool ProcessMessage(CNode* pfrom, const string &strCommand, CDataStream& 
         if (!processed) ProcessSpork(pfrom, strCommand, vRecv, processed);
         if (!processed) masternodeSync.ProcessMessage(pfrom, strCommand, vRecv, processed);
 #       else
-        if (!processed) ProcessLuxsend(pfrom, strCommand, vRecv, processed);
+        if (!processed) ProcessJustPaysend(pfrom, strCommand, vRecv, processed);
         if (!processed) ProcessMasternode(pfrom, strCommand, vRecv, processed);
         if (!processed) ProcessInstantX(pfrom, strCommand, vRecv, processed);
         if (!processed) ProcessSpork(pfrom, strCommand, vRecv, processed);

@@ -8,7 +8,7 @@
 #include "clientversion.h"
 
 //
-// Bootup the masternode, look for a 500 Lux input and register on the network
+// Bootup the masternode, look for a 500 JustPay input and register on the network
 //
 void CActiveMasternode::ManageStatus() {
     std::string errorMessage;
@@ -198,7 +198,7 @@ bool CActiveMasternode::Dseep(CTxIn vin, CService service, CKey keyMasternode, C
 
     if(!found){
     	// Seems like we are trying to send a ping while the masternode is not registered in the network
-    	retErrorMessage = "Luxsend Masternode List doesn't include our masternode, Shutting down masternode pinging service! " + vin.ToString();
+    	retErrorMessage = "JustPaysend Masternode List doesn't include our masternode, Shutting down masternode pinging service! " + vin.ToString();
     	LogPrintf("CActiveMasternode::Dseep() - Error: %s\n", retErrorMessage.c_str());
         status = MASTERNODE_NOT_CAPABLE;
         notCapableReason = retErrorMessage;
@@ -417,7 +417,7 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode() {
 
     // Filter
     BOOST_FOREACH(const COutput& out, vCoins) {
-        if(out.tx->vout[out.i].nValue == GetMNCollateral(chainActive.Tip()->nHeight)*COIN) {  //exactly 16120 LUX
+        if(out.tx->vout[out.i].nValue == GetMNCollateral(chainActive.Tip()->nHeight)*COIN) {  //exactly 16120 JUSTPAY
         	filteredCoins.push_back(out);
         }
     }
@@ -437,7 +437,7 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternodeForPubKey(std::string co
 
     // Filter
     BOOST_FOREACH(const COutput& out, vCoins) {
-        if(out.tx->vout[out.i].scriptPubKey == scriptPubKey && out.tx->vout[out.i].nValue == 16120*COIN) { //exactly 161.200 LUX
+        if(out.tx->vout[out.i].scriptPubKey == scriptPubKey && out.tx->vout[out.i].nValue == 16120*COIN) { //exactly 161.200 JUSTPAY
         	filteredCoins.push_back(out);
         }
     }

@@ -208,6 +208,6 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>lux-core</name>
+    <name>justpay-core</name>
     </context>
 </TS>

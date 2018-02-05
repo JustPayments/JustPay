@@ -72,11 +72,11 @@ tradingDialog::tradingDialog(QWidget *parent) :
     ohlc->setChartStyle(QCPFinancial::csOhlc);
 
     ui->BtcAvailableLabel->setTextFormat(Qt::RichText);
-    ui->LUXAvailableLabel->setTextFormat(Qt::RichText);
+    ui->JUSTPAYAvailableLabel->setTextFormat(Qt::RichText);
     ui->BuyCostLabel->setTextFormat(Qt::RichText);
     ui->SellCostLabel->setTextFormat(Qt::RichText);
     ui->CryptopiaBTCLabel->setTextFormat(Qt::RichText);
-    ui->CryptopiaLUXLabel->setTextFormat(Qt::RichText);
+    ui->CryptopiaJUSTPAYLabel->setTextFormat(Qt::RichText);
     ui->CSDumpLabel->setTextFormat(Qt::RichText);
     ui->CSTotalLabel->setTextFormat(Qt::RichText);
     ui->CSReceiveLabel->setTextFormat(Qt::RichText);
@@ -94,8 +94,8 @@ tradingDialog::tradingDialog(QWidget *parent) :
     connect(ui->PasswordInput, SIGNAL(returnPressed()),ui->LoadKeys,SIGNAL(clicked()));
 
     /*OrderBook Table Init*/
-    CreateOrderBookTables(*ui->BidsTable,QStringList() << "SUM(BTC)" << "TOTAL(BTC)" << "LUX(SIZE)" << "BID(BTC)");
-    CreateOrderBookTables(*ui->AsksTable,QStringList() << "ASK(BTC)" << "LUX(SIZE)" << "TOTAL(BTC)" << "SUM(BTC)");
+    CreateOrderBookTables(*ui->BidsTable,QStringList() << "SUM(BTC)" << "TOTAL(BTC)" << "JUSTPAY(SIZE)" << "BID(BTC)");
+    CreateOrderBookTables(*ui->AsksTable,QStringList() << "ASK(BTC)" << "JUSTPAY(SIZE)" << "TOTAL(BTC)" << "SUM(BTC)");
     connect (ui->BidsTable, SIGNAL(cellClicked(int,int)), this, SLOT(BidInfoInsertSlot(int, int)));
     connect (ui->AsksTable, SIGNAL(cellClicked(int,int)), this, SLOT(AskInfoInsertSlot(int, int)));
     /*OrderBook Table Init*/
@@ -103,7 +103,7 @@ tradingDialog::tradingDialog(QWidget *parent) :
     /*Market History Table Init*/
     ui->MarketHistoryTable->setColumnCount(5);
     ui->MarketHistoryTable->verticalHeader()->setVisible(false);
-    ui->MarketHistoryTable->setHorizontalHeaderLabels(QStringList()<<"DATE"<<"BUY/SELL"<<"BID/ASK"<<"TOTAL UNITS(LUX)"<<"TOTAL COST(BTC");
+    ui->MarketHistoryTable->setHorizontalHeaderLabels(QStringList()<<"DATE"<<"BUY/SELL"<<"BID/ASK"<<"TOTAL UNITS(JUSTPAY)"<<"TOTAL COST(BTC");
     ui->MarketHistoryTable->setRowCount(0);
     int Cellwidth =  ui->MarketHistoryTable->width() / 5;
     ui->MarketHistoryTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -179,7 +179,7 @@ void tradingDialog::InitTrading()
 }
 
 void tradingDialog::UpdaterFunction(){
-    //LUXst get the main exchange info in order to populate qLabels in maindialog. then get data
+    //JUSTPAYst get the main exchange info in order to populate qLabels in maindialog. then get data
     //required for the current tab.
 
     int Retval = SetExchangeInfoTextLabels();
@@ -191,20 +191,20 @@ void tradingDialog::UpdaterFunction(){
 
 QString tradingDialog::GetMarketSummary(){
 
-    QString Response = sendRequest("https://www.cryptopia.co.nz/api/GetMarket/LUX_BTC");
+    QString Response = sendRequest("https://www.cryptopia.co.nz/api/GetMarket/JUSTPAY_BTC");
     return Response;
 }
 
 QString tradingDialog::GetOrderBook(){
 
-    QString  Response = sendRequest("https://www.cryptopia.co.nz/api/GetMarketOrders/LUX_BTC");
+    QString  Response = sendRequest("https://www.cryptopia.co.nz/api/GetMarketOrders/JUSTPAY_BTC");
     return Response;
 }
 
 void tradingDialog::GetMarketHistory(){
     std::function<void(void)> f = std::bind(&tradingDialog::showMarketHistoryWhenReplyFinished, this);//&tradingDialog::showMarketHistoryWhenReplyFinished;//std::bind(&tradingDialog::showMarketHistoryWhenReplyFinished, this);
 
-    sendRequest1(QString("https://www.cryptopia.co.nz/api/GetMarketHistory/LUX_BTC"), f);
+    sendRequest1(QString("https://www.cryptopia.co.nz/api/GetMarketHistory/JUSTPAY_BTC"), f);
 }
 
 QString tradingDialog::CancelOrder(QString OrderId){
@@ -215,13 +215,13 @@ QString tradingDialog::CancelOrder(QString OrderId){
     return Response;
 }
 
-QString tradingDialog::BuyLUX(QString OrderType, double Quantity, double Rate){
+QString tradingDialog::BuyJUSTPAY(QString OrderType, double Quantity, double Rate){
 
     QString str = "";
     QString URL = "https://www.cryptopia.co.nz/api/SubmitTrade";
 
     QJsonObject stats_obj;
-    stats_obj["Market"] = "LUX/BTC";
+    stats_obj["Market"] = "JUSTPAY/BTC";
     stats_obj["Type"] = "Buy";
     stats_obj["Amount"] = Quantity;
     stats_obj["Rate"] = Rate;
@@ -234,13 +234,13 @@ QString tradingDialog::BuyLUX(QString OrderType, double Quantity, double Rate){
     return Response;
 }
 
-QString tradingDialog::SellLUX(QString OrderType, double Quantity, double Rate){
+QString tradingDialog::SellJUSTPAY(QString OrderType, double Quantity, double Rate){
 
     QString str = "";
     QString URL = "https://www.cryptopia.co.nz/api/SubmitTrade";
 
     QJsonObject stats_obj;
-    stats_obj["Market"] = "LUX/BTC";
+    stats_obj["Market"] = "JUSTPAY/BTC";
     stats_obj["Type"] = "Sell";
     stats_obj["Amount"] = Quantity;
     stats_obj["Rate"] = Rate;
@@ -296,7 +296,7 @@ QString tradingDialog::GetBalance(QString Currency){
 QString tradingDialog::GetDepositAddress(){
 
     QString URL = "https://www.cryptopia.co.nz/api/GetDepositAddress";
-    QString Response = sendRequest(URL, "POST", QString("{\"Currency\":\"LUX\"}"));
+    QString Response = sendRequest(URL, "POST", QString("{\"Currency\":\"JUSTPAY\"}"));
     return Response;
 }
 
@@ -326,7 +326,7 @@ int tradingDialog::SetExchangeInfoTextLabels(){
 
     ui->Bid->setText("<b>Bid:</b> <span style='font-weight:bold; font-size:12px; color:Green;'>" + str.number(obj["BidPrice"].toDouble(),'i',8) + "</span> BTC");
 
-    ui->volumet->setText("<b>LUX Volume:</b> <span style='font-weight:bold; font-size:12px; color:blue;'>" + str.number(obj["Volume"].toDouble(),'i',8) + "</span> LUX");
+    ui->volumet->setText("<b>JUSTPAY Volume:</b> <span style='font-weight:bold; font-size:12px; color:blue;'>" + str.number(obj["Volume"].toDouble(),'i',8) + "</span> JUSTPAY");
 
     ui->volumebtc->setText("<b>BTC Volume:</b> <span style='font-weight:bold; font-size:12px; color:blue;'>" + str.number(obj["BaseVolume"].toDouble(),'i',8) + "</span> BTC");
 
@@ -449,9 +449,9 @@ void tradingDialog::BidInfoInsertSlot(int row, int col){
 void tradingDialog::AskInfoInsertSlot(int row, int col){
 
     QString SellBidPriceString = ui->AsksTable->model()->data(ui->AsksTable->model()->index(row,0)).toString();
-    QString UnitsLUXString = ui->AsksTable->model()->data(ui->AsksTable->model()->index(row,1)).toString();
+    QString UnitsJUSTPAYString = ui->AsksTable->model()->data(ui->AsksTable->model()->index(row,1)).toString();
     ui->SellBidPriceEdit->setText(SellBidPriceString);
-    ui->UnitsInputLUX->setText(UnitsLUXString);
+    ui->UnitsInputJUSTPAY->setText(UnitsJUSTPAYString);
 
 
 
@@ -525,8 +525,8 @@ void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
     QJsonArray  BuyArray  = ResultObject.value("Buy").toArray();                //get buy/sell object from result object
     QJsonArray  SellArray = ResultObject.value("Sell").toArray();               //get buy/sell object from result object
 
-    double LUXSupply = 0;
-    double LUXDemand = 0;
+    double JUSTPAYSupply = 0;
+    double JUSTPAYDemand = 0;
     double BtcSupply = 0;
     double BtcDemand = 0;
 
@@ -540,7 +540,7 @@ void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
         double y = obj["Volume"].toDouble();
         double a = (x * y);
 
-        LUXSupply += y;
+        JUSTPAYSupply += y;
         BtcSupply += a;
 
         AskRows = ui->AsksTable->rowCount();
@@ -562,7 +562,7 @@ void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
         double y = obj["Volume"].toDouble();
         double a = (x * y);
 
-        LUXDemand += y;
+        JUSTPAYDemand += y;
         BtcDemand += a;
 
         BidRows = ui->BidsTable->rowCount();
@@ -574,11 +574,11 @@ void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
         BuyItteration++;
     }
 
-    ui->LUXSupply->setText("<b>Supply:</b> <span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(LUXSupply,'i',8) + "</span><b> LUX</b>");
+    ui->JUSTPAYSupply->setText("<b>Supply:</b> <span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(JUSTPAYSupply,'i',8) + "</span><b> JUSTPAY</b>");
     ui->BtcSupply->setText("<span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(BtcSupply,'i',8) + "</span><b> BTC</b>");
     ui->AsksCount->setText("<b>Ask's :</b> <span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(ui->AsksTable->rowCount()) + "</span>");
 
-    ui->LUXDemand->setText("<b>Demand:</b> <span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(LUXDemand,'i',8) + "</span><b> LUX</b>");
+    ui->JUSTPAYDemand->setText("<b>Demand:</b> <span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(JUSTPAYDemand,'i',8) + "</span><b> JUSTPAY</b>");
     ui->BtcDemand->setText("<span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(BtcDemand,'i',8) + "</span><b> BTC</b>");
     ui->BidsCount->setText("<b>Bid's :</b> <span style='font-weight:bold; font-size:12px; color:blue'>" + str.number(ui->BidsTable->rowCount()) + "</span>");
     obj.empty();
@@ -650,7 +650,7 @@ void tradingDialog::ParseAndPopulatePriceChart(QString Response){
     ohlc->setTwoColored(true);
 
     derPlot->xAxis->setLabel("Time (GMT)");
-    derPlot->yAxis->setLabel("LUX Price in BTC");
+    derPlot->yAxis->setLabel("JUSTPAY Price in BTC");
 
     QCPAxisRect *volumeAxisRect = new QCPAxisRect(derPlot);
     QSharedPointer<QCPAxisTickerDateTime> dateTimeTicker(new QCPAxisTickerDateTime);
@@ -685,24 +685,24 @@ void tradingDialog::ActionsOnSwitch(int index = -1){
     switch (index){
         case 0:    //buy tab is active
 
-            f = std::bind(&tradingDialog::showBalanceOfLUXOnTradingTab, this);
-            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "LUX" + QString("\"}"));
+            f = std::bind(&tradingDialog::showBalanceOfJUSTPAYOnTradingTab, this);
+            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "JUSTPAY" + QString("\"}"));
 
             f = std::bind(&tradingDialog::showBalanceOfBTCOnTradingTab, this);
             sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "BTC" + QString("\"}"));
 
             f = std::bind(&tradingDialog::showOrderBookOnTradingTab, this);
-            sendRequest1("https://www.cryptopia.co.nz/api/GetMarketOrders/LUX_BTC", f);
+            sendRequest1("https://www.cryptopia.co.nz/api/GetMarketOrders/JUSTPAY_BTC", f);
 
             f = std::bind(&tradingDialog::showMarketHistoryOnTradingTab, this);
-            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetMarketHistory/LUX_BTC"), f);
+            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetMarketHistory/JUSTPAY_BTC"), f);
 
             break;
 
         case 1: //Cross send tab active
 
-            f = std::bind(&tradingDialog::showBalanceOfLUXOnSendTab, this);
-            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "LUX" + QString("\"}"));
+            f = std::bind(&tradingDialog::showBalanceOfJUSTPAYOnSendTab, this);
+            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "JUSTPAY" + QString("\"}"));
 
             f = std::bind(&tradingDialog::showBalanceOfBTCOnSendTab, this);
             sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "BTC" + QString("\"}"));
@@ -729,8 +729,8 @@ void tradingDialog::ActionsOnSwitch(int index = -1){
 
         case 5://show balance tab
 
-            f = std::bind(&tradingDialog::showBalanceOfLUXOnBalanceTab, this);
-            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "LUX" + QString("\"}"));
+            f = std::bind(&tradingDialog::showBalanceOfJUSTPAYOnBalanceTab, this);
+            sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "JUSTPAY" + QString("\"}"));
 
             f = std::bind(&tradingDialog::showBalanceOfBTCOnBalanceTab, this);
             sendRequest1(QString("https://www.cryptopia.co.nz/api/GetBalance"), f, "POST", QString("{\"Currency\":\"") + "BTC" + QString("\"}"));
@@ -944,7 +944,7 @@ void tradingDialog::showMarketHistoryWhenReplyFinished() {
     }
 }
 
-void tradingDialog::showBalanceOfLUXOnTradingTab() {
+void tradingDialog::showBalanceOfJUSTPAYOnTradingTab() {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QString Response = "";
     if (reply->error() == QNetworkReply::NoError) {
@@ -960,7 +960,7 @@ void tradingDialog::showBalanceOfLUXOnTradingTab() {
 
     reply->deleteLater();
     if(Response.size() > 0 && Response != "Error"){
-        DisplayBalance(*ui->LUXAvailableLabel, Response);
+        DisplayBalance(*ui->JUSTPAYAvailableLabel, Response);
     }
 }
 
@@ -1024,7 +1024,7 @@ void tradingDialog::showMarketHistoryOnTradingTab() {
     }
 }
 
-void tradingDialog::showBalanceOfLUXOnSendTab() {
+void tradingDialog::showBalanceOfJUSTPAYOnSendTab() {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QString Response = "";
     if (reply->error() == QNetworkReply::NoError) {
@@ -1040,7 +1040,7 @@ void tradingDialog::showBalanceOfLUXOnSendTab() {
 
     reply->deleteLater();
     if(Response.size() > 0 && Response != "Error"){
-        DisplayBalance(*ui->CryptopiaLUXLabel, Response);
+        DisplayBalance(*ui->CryptopiaJUSTPAYLabel, Response);
     }
 }
 
@@ -1064,7 +1064,7 @@ void tradingDialog::showBalanceOfBTCOnSendTab() {
     }
 }
 
-void tradingDialog::showBalanceOfLUXOnBalanceTab() {
+void tradingDialog::showBalanceOfJUSTPAYOnBalanceTab() {
     QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
     QString Response = "";
     if (reply->error() == QNetworkReply::NoError) {
@@ -1080,7 +1080,7 @@ void tradingDialog::showBalanceOfLUXOnBalanceTab() {
 
     reply->deleteLater();
     if(Response.size() > 0 && Response != "Error"){
-        DisplayBalance(*ui->LUXBalanceLabel,*ui->LUXAvailableLabel_2,*ui->LUXPendingLabel, QString::fromUtf8("LUX"),Response);
+        DisplayBalance(*ui->JUSTPAYBalanceLabel,*ui->JUSTPAYAvailableLabel_2,*ui->JUSTPAYPendingLabel, QString::fromUtf8("JUSTPAY"),Response);
     }
 }
 
@@ -1235,7 +1235,7 @@ void tradingDialog::CalculateBuyCostLabel(){
 void tradingDialog::CalculateSellCostLabel(){
 
     double price    = ui->SellBidPriceEdit->text().toDouble();
-    double Quantity = ui->UnitsInputLUX->text().toDouble();
+    double Quantity = ui->UnitsInputJUSTPAY->text().toDouble();
     double cost = ((price * Quantity) - ((price * Quantity / 100) * 0.25));
 
     QString Str = "";
@@ -1245,7 +1245,7 @@ void tradingDialog::CalculateSellCostLabel(){
 void tradingDialog::CalculateCSReceiveLabel(){
 
     //calculate amount of currency than can be transferred to bitcoin
-    QString balance = GetBalance("LUX");
+    QString balance = GetBalance("JUSTPAY");
     QString buyorders = GetOrderBook();
 
     QJsonObject BuyObject = GetResultObjectFromJSONObject(buyorders);
@@ -1258,7 +1258,7 @@ void tradingDialog::CalculateCSReceiveLabel(){
     QJsonDocument doc2(BalanceObject);
     QString param_str2(doc2.toJson(QJsonDocument::Compact));
 
-    double AvailableLUX = BalanceObject["Available"].toDouble();
+    double AvailableJUSTPAY = BalanceObject["Available"].toDouble();
     double Quantity = ui->CSUnitsInput->text().toDouble();
     double Received = 0;
     double Qty = 0;
@@ -1293,7 +1293,7 @@ void tradingDialog::CalculateCSReceiveLabel(){
     QString DumpStr = "";
     QString TotalStr = "";
 
-    if ( Qty < AvailableLUX )
+    if ( Qty < AvailableJUSTPAY )
     {
         ui->CSReceiveLabel->setStyleSheet("font-weight:bold; font-size:12px; color:green");
         ui->CSDumpLabel->setStyleSheet("font-weight:bold; font-size:12px; color:red");
@@ -1461,14 +1461,14 @@ void tradingDialog::on_GenDepositBTN_clicked()
 
 void tradingDialog::on_Sell_Max_Amount_clicked()
 {
-    //calculate amount of BTC that can be gained from selling LUX available balance
-    QString responseA = GetBalance("LUX");
+    //calculate amount of BTC that can be gained from selling JUSTPAY available balance
+    QString responseA = GetBalance("JUSTPAY");
     QString str;
     QJsonObject ResultObject =  GetResultObjectFromJSONArray(responseA);
 
-    double AvailableLUX = ResultObject["Available"].toDouble();
+    double AvailableJUSTPAY = ResultObject["Available"].toDouble();
 
-    ui->UnitsInputLUX->setText(str.number(AvailableLUX,'i',8));
+    ui->UnitsInputJUSTPAY->setText(str.number(AvailableJUSTPAY,'i',8));
 }
 
 void tradingDialog::on_Buy_Max_Amount_clicked()
@@ -1495,7 +1495,7 @@ void tradingDialog::on_Buy_Max_Amount_clicked()
 
 void tradingDialog::on_CS_Max_Amount_clicked()
 {
-    double Quantity = ui->CryptopiaLUXLabel->text().toDouble();
+    double Quantity = ui->CryptopiaJUSTPAYLabel->text().toDouble();
     double Received = 0;
     double Qty = 0;
     double Price = 0;
@@ -1542,14 +1542,14 @@ void tradingDialog::on_CS_Max_Amount_clicked()
 void tradingDialog::on_Withdraw_Max_Amount_clicked()
 {
     //calculate amount of currency than can be brought with the BTC balance available
-    QString responseA = GetBalance("LUX");
+    QString responseA = GetBalance("JUSTPAY");
     QString str;
 
     QJsonObject ResultObject =  GetResultObjectFromJSONArray(responseA);
 
-    double AvailableLUX = ResultObject["Available"].toDouble();
+    double AvailableJUSTPAY = ResultObject["Available"].toDouble();
 
-    ui->WithdrawUnitsInput->setText(str.number(AvailableLUX,'i',8));
+    ui->WithdrawUnitsInput->setText(str.number(AvailableJUSTPAY,'i',8));
 }
 
 QJsonObject tradingDialog::GetResultObjectFromJSONObject(QString response){
@@ -1637,7 +1637,7 @@ void tradingDialog::on_BuyBidcomboBox_currentIndexChanged(const QString &arg1)
     CalculateBuyCostLabel(); //update cost
 }
 
-void tradingDialog::on_BuyLUX_clicked()
+void tradingDialog::on_BuyJUSTPAY_clicked()
 {
     double Rate;
     double Quantity;
@@ -1652,7 +1652,7 @@ void tradingDialog::on_BuyLUX_clicked()
 
     QString Msg = "Are you sure you want to buy ";
     Msg += ui->UnitsInput->text();
-    Msg += "LUX @ ";
+    Msg += "JUSTPAY @ ";
     Msg += ui->BuyBidPriceEdit->text();
     Msg += " BTC Each";
 
@@ -1661,7 +1661,7 @@ void tradingDialog::on_BuyLUX_clicked()
 
     if (reply == QMessageBox::Yes) {
 
-        QString Response =  BuyLUX(Order,Quantity,Rate);
+        QString Response =  BuyJUSTPAY(Order,Quantity,Rate);
 
         QJsonDocument jsonResponse = QJsonDocument::fromJson(Response.toUtf8());          //get json from str.
         QJsonObject  ResponseObject = jsonResponse.object();                              //get json obj
@@ -1677,13 +1677,13 @@ void tradingDialog::on_BuyLUX_clicked()
     }
 }
 
-void tradingDialog::on_SellLUXBTN_clicked()
+void tradingDialog::on_SellJUSTPAYBTN_clicked()
 {
     double Rate;
     double Quantity;
 
     Rate     = ui->SellBidPriceEdit->text().toDouble();
-    Quantity = ui->UnitsInputLUX->text().toDouble();
+    Quantity = ui->UnitsInputJUSTPAY->text().toDouble();
 
     QString OrderType = "Limit";
     QString Order;
@@ -1691,8 +1691,8 @@ void tradingDialog::on_SellLUXBTN_clicked()
     if(OrderType == "Limit"){Order = "selllimit";}else if (OrderType == "Market"){ Order = "sellmarket";}
 
     QString Msg = "Are you sure you want to Sell ";
-    Msg += ui->UnitsInputLUX->text();
-    Msg += " LUX @ ";
+    Msg += ui->UnitsInputJUSTPAY->text();
+    Msg += " JUSTPAY @ ";
     Msg += ui->SellBidPriceEdit->text();
     Msg += " BTC Each";
 
@@ -1701,7 +1701,7 @@ void tradingDialog::on_SellLUXBTN_clicked()
 
     if (reply == QMessageBox::Yes) {
 
-        QString Response =  SellLUX(Order,Quantity,Rate);
+        QString Response =  SellJUSTPAY(Order,Quantity,Rate);
         QJsonDocument jsonResponse = QJsonDocument::fromJson(Response.toUtf8());          //get json from str.
         QJsonObject  ResponseObject = jsonResponse.object();                              //get json obj
 
@@ -1773,7 +1773,7 @@ void tradingDialog::on_CSUnitsBtn_clicked()
             Qty += y;
             Quantity -= ((Price * y) - ((Price * y / 100) * 0.25));
 
-            QString SellResponse = SellLUX(Order,y,x);
+            QString SellResponse = SellJUSTPAY(Order,y,x);
             QJsonDocument SelljsonResponse = QJsonDocument::fromJson(SellResponse.toUtf8());          //get json from str.
             QJsonObject SellResponseObject = SelljsonResponse.object();                              //get json obj
 
@@ -1796,7 +1796,7 @@ void tradingDialog::on_CSUnitsBtn_clicked()
             if (Quantity < 0.00051){
                 Quantity = 0.00051;
             }
-            QString SellResponse = SellLUX(Order,(Quantity / x),x);
+            QString SellResponse = SellJUSTPAY(Order,(Quantity / x),x);
             QJsonDocument SelljsonResponse = QJsonDocument::fromJson(SellResponse.toUtf8());          //get json from str.
             QJsonObject SellResponseObject = SelljsonResponse.object();                              //get json obj
 
@@ -1818,10 +1818,10 @@ void tradingDialog::on_CSUnitsBtn_clicked()
                     if (ResponseObject["Success"].toBool() == false){
                         QMessageBox::information(this,"Failed",ResponseObject["Error"].toString());
                     } else if (ResponseObject["Success"].toBool() == true){
-                        QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" LUX for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
+                        QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" JUSTPAY for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
                     }
                 } else if (ResponseObject["Success"].toBool() == true){
-                    QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" LUX for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
+                    QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" JUSTPAY for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
                 }
             }
             break;
@@ -1833,10 +1833,10 @@ void tradingDialog::on_WithdrawUnitsBtn_clicked()
 {
     double Quantity = ui->WithdrawUnitsInput->text().toDouble();
     QString Qstr;
-    QString Coin = "LUX";
+    QString Coin = "JUSTPAY";
     QString Msg = "Are you sure you want to Withdraw ";
     Msg += Qstr.number((Quantity - 0.02),'i',8);
-    Msg += " LUX to ";
+    Msg += " JUSTPAY to ";
     Msg += ui->WithdrawAddress->text();
     Msg += " ?";
 
@@ -1867,7 +1867,7 @@ void tradingDialog::on_WithdrawUnitsBtn_clicked()
     }
 }
 
-void tradingDialog::on_UnitsInputLUX_textChanged(const QString &arg1)
+void tradingDialog::on_UnitsInputJUSTPAY_textChanged(const QString &arg1)
 {
     CalculateSellCostLabel(); //update cost
 }

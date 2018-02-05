@@ -214,16 +214,16 @@
         <translation>&amp;Eines</translation>
     </message>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     <message>
-        <source>&amp;About LUX Core</source>
-        <translation>&amp;Sobre LUX Core</translation>
+        <source>&amp;About JUSTPAY Core</source>
+        <translation>&amp;Sobre JUSTPAY Core</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LUX network</source>
-        <translation><numerusform>%n connexió activa a la xarxa LUX</numerusform><numerusform>%n connexions actives a la xarxa LUX</numerusform></translation>
+        <source>%n active connection(s) to JUSTPAY network</source>
+        <translation><numerusform>%n connexió activa a la xarxa JUSTPAY</numerusform><numerusform>%n connexions actives a la xarxa JUSTPAY</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -392,12 +392,12 @@
         <translation>versió</translation>
     </message>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     <message>
-        <source>About LUX Core</source>
-        <translation>Sobre LUX Core</translation>
+        <source>About JUSTPAY Core</source>
+        <translation>Sobre JUSTPAY Core</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -415,12 +415,12 @@
         <translation>Benvingut</translation>
     </message>
     <message>
-        <source>Welcome to LUX Core.</source>
-        <translation>Benvingut a LUX Core.</translation>
+        <source>Welcome to JUSTPAY Core.</source>
+        <translation>Benvingut a JUSTPAY Core.</translation>
     </message>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     <message>
         <source>Error</source>
@@ -888,8 +888,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>LUX Core</source>
-        <translation>LUX Core</translation>
+        <source>JUSTPAY Core</source>
+        <translation>JUSTPAY Core</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -1040,7 +1040,7 @@
     </message>
     </context>
 <context>
-    <name>lux-core</name>
+    <name>justpay-core</name>
     <message>
         <source>Error</source>
         <translation>Error</translation>

@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The JUSTPAY developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/lux-config.h"
+#include "config/justpay-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -61,7 +61,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::LUX);
+        settings.setValue("nDisplayUnit", BitcoinUnits::JUSTPAY);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -75,11 +75,11 @@ void OptionsModel::Init()
     if (!settings.contains("nDarksendRounds"))
         settings.setValue("nDarksendRounds", 2);
 
-    if (!settings.contains("nAnonymizeLuxAmount"))
-        settings.setValue("nAnonymizeLuxAmount", 1000);
+    if (!settings.contains("nAnonymizeJustPayAmount"))
+        settings.setValue("nAnonymizeJustPayAmount", 1000);
 
     nDarksendRounds = settings.value("nDarksendRounds").toLongLong();
-    nAnonymizeLuxAmount = settings.value("nAnonymizeLuxAmount").toLongLong();
+    nAnonymizeJustPayAmount = settings.value("nAnonymizeJustPayAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -146,8 +146,8 @@ void OptionsModel::Init()
 
     if (settings.contains("nDarksendRounds"))
         SoftSetArg("-obfuscationrounds", settings.value("nDarksendRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeLuxAmount"))
-        SoftSetArg("-anonymizeluxamount", settings.value("nAnonymizeLuxAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeJustPayAmount"))
+        SoftSetArg("-anonymizejustpayamount", settings.value("nAnonymizeJustPayAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -158,7 +158,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in lux.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in justpay.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -227,8 +227,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nThreadsScriptVerif");
         case DarksendRounds:
             return QVariant(nDarksendRounds);
-        case AnonymizeLuxAmount:
-            return QVariant(nAnonymizeLuxAmount);
+        case AnonymizeJustPayAmount:
+            return QVariant(nAnonymizeJustPayAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -337,10 +337,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             settings.setValue("nDarksendRounds", nDarksendRounds);
             emit obfuscationRoundsChanged(nDarksendRounds);
             break;
-        case AnonymizeLuxAmount:
-            nAnonymizeLuxAmount = value.toInt();
-            settings.setValue("nAnonymizeLuxAmount", nAnonymizeLuxAmount);
-            emit anonymizeLuxAmountChanged(nAnonymizeLuxAmount);
+        case AnonymizeJustPayAmount:
+            nAnonymizeJustPayAmount = value.toInt();
+            settings.setValue("nAnonymizeJustPayAmount", nAnonymizeJustPayAmount);
+            emit anonymizeJustPayAmountChanged(nAnonymizeJustPayAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

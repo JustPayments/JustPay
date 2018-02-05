@@ -95,7 +95,7 @@ public:
 };
 
 /**
- * LUX RPC command dispatcher.
+ * JUSTPAY RPC command dispatcher.
  */
 class CRPCTable
 {

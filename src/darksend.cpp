@@ -34,11 +34,11 @@ CDarkSendPool darkSendPool;
 /** A helper object for signing messages from masternodes */
 CDarkSendSigner darkSendSigner;
 /** The current darksends in progress on the network */
-std::vector<CLuxsendQueue> vecLuxsendQueue;
+std::vector<CJustPaysendQueue> vecJustPaysendQueue;
 /** Keep track of the used masternodes */
 std::vector<CTxIn> vecMasternodesUsed;
 // keep track of the scanning errors I've seen
-map<uint256, CLuxsendBroadcastTx> mapLuxsendBroadcastTxes;
+map<uint256, CJustPaysendBroadcastTx> mapJustPaysendBroadcastTxes;
 //
 CActiveMasternode activeMasternode;
 
@@ -50,12 +50,12 @@ int RequestedMasterNodeList = 0;
         eduffield - evan@darkcoin.io
 */
 
-void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vRecv, bool &isLuxsend)
+void ProcessJustPaysend(CNode* pfrom, const std::string& strCommand, CDataStream& vRecv, bool &isJustPaysend)
 {
     if(fLiteMode) return; //disable all darksend/masternode related functionality
 
     if (strCommand == "dsf") { //DarkSend Final tx
-        isLuxsend = true;
+        isJustPaysend = true;
         
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
             return;
@@ -80,7 +80,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
     }
 
     else if (strCommand == "dsc") { //DarkSend Complete
-        isLuxsend = true;
+        isJustPaysend = true;
         
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
             return;
@@ -105,7 +105,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
     }
 
     else if (strCommand == "dsa") { //DarkSend Acceptable
-        isLuxsend = true;
+        isJustPaysend = true;
 
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
             std::string strError = _("Incompatible version.");
@@ -139,7 +139,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
             if(vecMasternodes[mn].nLastDsq != 0 &&
                 vecMasternodes[mn].nLastDsq + CountMasternodesAboveProtocol(darkSendPool.MIN_PEER_PROTO_VERSION)/5 > darkSendPool.nDsqCount){
                 //LogPrintf("dsa -- last dsq too recent, must wait. %s \n", vecMasternodes[mn].addr.ToString().c_str());
-                std::string strError = _("Last Luxsend was too recent.");
+                std::string strError = _("Last JustPaysend was too recent.");
                 pfrom->PushMessage("dssu", darkSendPool.sessionID, darkSendPool.GetState(), darkSendPool.GetEntriesCount(), MASTERNODE_REJECTED, strError);
                 return;
             }
@@ -158,13 +158,13 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
     }
 
     else if (strCommand == "dsq") { //DarkSend Queue
-        isLuxsend = true;
+        isJustPaysend = true;
 
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
             return;
         }
 
-        CLuxsendQueue dsq;
+        CJustPaysendQueue dsq;
         vRecv >> dsq;
 
 
@@ -185,9 +185,9 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
             }
 
             if (fDebug)  LogPrintf("darksend queue is ready - %s\n", addr.ToString().c_str());
-            darkSendPool.PrepareLuxsendDenominate();
+            darkSendPool.PrepareJustPaysendDenominate();
         } else {
-            BOOST_FOREACH(CLuxsendQueue q, vecLuxsendQueue){
+            BOOST_FOREACH(CJustPaysendQueue q, vecJustPaysendQueue){
                 if(q.vin == dsq.vin) return;
             }
 
@@ -203,7 +203,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
             vecMasternodes[mn].allowFreeTx = true;
 
             if(fDebug) LogPrintf("dsq - new darksend queue object - %s\n", addr.ToString().c_str());
-            vecLuxsendQueue.push_back(dsq);
+            vecJustPaysendQueue.push_back(dsq);
             dsq.Relay();
             dsq.time = GetTime();
         }
@@ -211,7 +211,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
     }
 
     else if (strCommand == "dsi") { //DarkSend vIn
-        isLuxsend = true;
+        isJustPaysend = true;
         
         std::string error = "";
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
@@ -299,7 +299,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
 
             if (nValueIn > DARKSEND_POOL_MAX) {
                 LogPrintf("dsi -- more than darksend pool max! %s\n", tx.ToString().c_str());
-                error = _("Value more than Luxsend pool maximum allows.");
+                error = _("Value more than JustPaysend pool maximum allows.");
                 pfrom->PushMessage("dssu", darkSendPool.sessionID, darkSendPool.GetState(), darkSendPool.GetEntriesCount(), MASTERNODE_REJECTED, error);
                 return;
             }
@@ -338,7 +338,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
     }
 
     else if (strCommand == "dssub") { //DarkSend Subscribe To
-        isLuxsend = true;
+        isJustPaysend = true;
         
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
             return;
@@ -352,7 +352,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
     }
 
     else if (strCommand == "dssu") { //DarkSend status update
-        isLuxsend = true;
+        isJustPaysend = true;
 
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
             return;
@@ -382,7 +382,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
     }
 
     else if (strCommand == "dss") { //DarkSend Sign Final Tx
-        isLuxsend = true;
+        isJustPaysend = true;
         
         if (pfrom->nVersion < darkSendPool.MIN_PEER_PROTO_VERSION) {
             return;
@@ -413,7 +413,7 @@ void ProcessLuxsend(CNode* pfrom, const std::string& strCommand, CDataStream& vR
 int randomizeList (int i) { return std::rand()%i;}
 
 // Recursively determine the rounds of a given input (How deep is the darksend chain for a given input)
-int GetInputLuxsendRounds(CTxIn in, int rounds)
+int GetInputJustPaysendRounds(CTxIn in, int rounds)
 {
     if(rounds >= 17) return rounds;
 
@@ -444,7 +444,7 @@ int GetInputLuxsendRounds(CTxIn in, int rounds)
             if(pwalletMain->IsMine(in2))
             {
                 //LogPrintf("rounds :: %s %s %d NEXT\n", padding.c_str(), in.ToString().c_str(), rounds);
-                int n = GetInputLuxsendRounds(in2, rounds+1);
+                int n = GetInputJustPaysendRounds(in2, rounds+1);
                 if(n != -3) return n;
             }
         }
@@ -509,7 +509,7 @@ bool CDarkSendPool::SetCollateralAddress(std::string strAddress){
 }
 
 //
-// Unlock coins after Luxsend fails or succeeds
+// Unlock coins after JustPaysend fails or succeeds
 //
 void CDarkSendPool::UnlockCoins(){
     BOOST_FOREACH(CTxIn v, lockedCoins)
@@ -519,7 +519,7 @@ void CDarkSendPool::UnlockCoins(){
 }
 
 //
-// Check the Luxsend progress and send client updates if a masternode
+// Check the JustPaysend progress and send client updates if a masternode
 //
 void CDarkSendPool::Check()
 {
@@ -614,14 +614,14 @@ void CDarkSendPool::Check()
                     return;
                 }
 
-                if(!mapLuxsendBroadcastTxes.count(txNew.GetHash())){
-                    CLuxsendBroadcastTx dstx;
+                if(!mapJustPaysendBroadcastTxes.count(txNew.GetHash())){
+                    CJustPaysendBroadcastTx dstx;
                     dstx.tx = txNew;
                     dstx.vin = activeMasternode.vin;
                     dstx.vchSig = vchSig;
                     dstx.sigTime = sigTime;
 
-                    mapLuxsendBroadcastTxes.insert(make_pair(txNew.GetHash(), dstx));
+                    mapJustPaysendBroadcastTxes.insert(make_pair(txNew.GetHash(), dstx));
                 }
 
                 // Broadcast the transaction to the network
@@ -658,7 +658,7 @@ void CDarkSendPool::Check()
 //
 // Charge clients a fee if they're abusive
 //
-// Why bother? Luxsend uses collateral to ensure abuse to the process is kept to a minimum.
+// Why bother? JustPaysend uses collateral to ensure abuse to the process is kept to a minimum.
 // The submission and signing stages in darksend are completely separate. In the cases where
 // a client submits a transaction then refused to sign, there must be a cost. Otherwise they
 // would be able to do this over and over again and bring the mixing to a hault.
@@ -770,7 +770,7 @@ void CDarkSendPool::ChargeFees(){
 }
 
 // charge the collateral randomly
-//  - Luxsend is completely free, to pay miners we randomly pay the collateral of users.
+//  - JustPaysend is completely free, to pay miners we randomly pay the collateral of users.
 void CDarkSendPool::ChargeRandomFees(){
     if(fMasterNode) {
         int i = 0;
@@ -783,9 +783,9 @@ void CDarkSendPool::ChargeRandomFees(){
 
                 Being that DarkSend has "no fees" we need to have some kind of cost associated
                 with using it to stop abuse. Otherwise it could serve as an attack vector and
-                allow endless transaction that would bloat Lux and make it unusable. To
+                allow endless transaction that would bloat JustPay and make it unusable. To
                 stop these kinds of attacks 1 in 50 successful transactions are charged. This
-                adds up to a cost of 0.002Lux per transaction on average.
+                adds up to a cost of 0.002JustPay per transaction on average.
             */
             if(r <= 20)
             {
@@ -809,7 +809,7 @@ void CDarkSendPool::ChargeRandomFees(){
 // Check for various timeouts (queue objects, darksend, etc)
 //
 void CDarkSendPool::CheckTimeout(){
-    if(!fEnableLuxsend && !fMasterNode) return;
+    if(!fEnableJustPaysend && !fMasterNode) return;
 
     // catching hanging sessions
     if(!fMasterNode) {
@@ -821,11 +821,11 @@ void CDarkSendPool::CheckTimeout(){
 
     // check darksend queue objects for timeouts
     int c = 0;
-    vector<CLuxsendQueue>::iterator it;
-    for(it=vecLuxsendQueue.begin();it<vecLuxsendQueue.end();it++){
+    vector<CJustPaysendQueue>::iterator it;
+    for(it=vecJustPaysendQueue.begin();it<vecJustPaysendQueue.end();it++){
         if((*it).IsExpired()){
             if(fDebug) LogPrintf("CDarkSendPool::CheckTimeout() : Removing expired queue entry - %d\n", c);
-            vecLuxsendQueue.erase(it);
+            vecJustPaysendQueue.erase(it);
             break;
         }
         c++;
@@ -833,7 +833,7 @@ void CDarkSendPool::CheckTimeout(){
 
     /* Check to see if we're ready for submissions from clients */
     if(state == POOL_STATUS_QUEUE && sessionUsers == GetMaxPoolTransactions()) {
-        CLuxsendQueue dsq;
+        CJustPaysendQueue dsq;
         dsq.nDenom = sessionDenom;
         dsq.vin = activeMasternode.vin;
         dsq.time = GetTime();
@@ -1112,9 +1112,9 @@ bool CDarkSendPool::SignaturesComplete(){
 // Execute a darksend denomination via a masternode.
 // This is only ran from clients
 //
-void CDarkSendPool::SendLuxsendDenominate(std::vector<CTxIn>& vin, std::vector<CTxOut>& vout, int64_t amount){
+void CDarkSendPool::SendJustPaysendDenominate(std::vector<CTxIn>& vin, std::vector<CTxOut>& vout, int64_t amount){
     if(darkSendPool.txCollateral == CMutableTransaction()){
-        LogPrintf ("CLuxsendPool:SendLuxsendDenominate() - Luxsend collateral not set");
+        LogPrintf ("CJustPaysendPool:SendJustPaysendDenominate() - JustPaysend collateral not set");
         return;
     }
 
@@ -1131,7 +1131,7 @@ void CDarkSendPool::SendLuxsendDenominate(std::vector<CTxIn>& vin, std::vector<C
 
     // we should already be connected to a masternode
     if(!sessionFoundMasternode){
-        LogPrintf("CDarkSendPool::SendLuxsendDenominate() - No masternode has been selected yet.\n");
+        LogPrintf("CDarkSendPool::SendJustPaysendDenominate() - No masternode has been selected yet.\n");
         UnlockCoins();
         SetNull(true);
         return;
@@ -1141,13 +1141,13 @@ void CDarkSendPool::SendLuxsendDenominate(std::vector<CTxIn>& vin, std::vector<C
         return;
 
     if(fMasterNode) {
-        LogPrintf("CDarkSendPool::SendLuxsendDenominate() - DarkSend from a masternode is not supported currently.\n");
+        LogPrintf("CDarkSendPool::SendJustPaysendDenominate() - DarkSend from a masternode is not supported currently.\n");
         return;
     }
 
     UpdateState(POOL_STATUS_ACCEPTING_ENTRIES);
 
-    LogPrintf("CDarkSendPool::SendLuxsendDenominate() - Added transaction to pool.\n");
+    LogPrintf("CDarkSendPool::SendJustPaysendDenominate() - Added transaction to pool.\n");
 
     ClearLastMessage();
 
@@ -1324,7 +1324,7 @@ void CDarkSendPool::NewBlock()
 
     darkSendPool.CheckTimeout();
 
-    if(!fEnableLuxsend) return;
+    if(!fEnableJustPaysend) return;
 
     if(!fMasterNode){
         //denominate all non-denominated inputs every 25 minutes.
@@ -1333,7 +1333,7 @@ void CDarkSendPool::NewBlock()
     }
 }
 
-// Luxsend transaction was completed (failed or successed)
+// JustPaysend transaction was completed (failed or successed)
 void CDarkSendPool::CompletedTransaction(bool error, std::string lastMessageNew)
 {
     if(fMasterNode) return;
@@ -1363,7 +1363,7 @@ void CDarkSendPool::ClearLastMessage()
 }
 
 //
-// Passively run Luxsend in the background to anonymize funds based on the given configuration.
+// Passively run JustPaysend in the background to anonymize funds based on the given configuration.
 //
 // This does NOT run by default for daemons, only for QT.
 //
@@ -1381,9 +1381,9 @@ bool CDarkSendPool::DoAutomaticDenominating(bool fDryRun, bool ready)
         strAutoDenomResult = _("Last successful darksend action was too recent.");
         return false;
     }
-    if(!fEnableLuxsend) {
-        if(fDebug) LogPrintf("CDarkSendPool::DoAutomaticDenominating - Luxsend is disabled\n");
-        strAutoDenomResult = _("Luxsend is disabled.");
+    if(!fEnableJustPaysend) {
+        if(fDebug) LogPrintf("CDarkSendPool::DoAutomaticDenominating - JustPaysend is disabled\n");
+        strAutoDenomResult = _("JustPaysend is disabled.");
         return false;
     }
 
@@ -1418,7 +1418,7 @@ bool CDarkSendPool::DoAutomaticDenominating(bool fDryRun, bool ready)
         // should have some additional amount for them
         nLowestDenom += (DARKSEND_COLLATERAL*4)+DARKSEND_FEE*2;
 
-    int64_t nBalanceNeedsAnonymized = nAnonymizeLuxAmount*COIN - pwalletMain->GetAnonymizedBalance();
+    int64_t nBalanceNeedsAnonymized = nAnonymizeJustPayAmount*COIN - pwalletMain->GetAnonymizedBalance();
 
     // if balanceNeedsAnonymized is more than pool max, take the pool max
     if(nBalanceNeedsAnonymized > DARKSEND_POOL_MAX) nBalanceNeedsAnonymized = DARKSEND_POOL_MAX;
@@ -1476,8 +1476,8 @@ bool CDarkSendPool::DoAutomaticDenominating(bool fDryRun, bool ready)
         //randomize the amounts we mix
         if(sessionTotalValue > nBalanceNeedsAnonymized) sessionTotalValue = nBalanceNeedsAnonymized;
 
-        double fLuxSubmitted = (sessionTotalValue / CENT);
-        LogPrintf("Submitting Luxsend for %f Lux CENT - sessionTotalValue %d\n", fLuxSubmitted, sessionTotalValue);
+        double fJustPaySubmitted = (sessionTotalValue / CENT);
+        LogPrintf("Submitting JustPaysend for %f JustPay CENT - sessionTotalValue %d\n", fJustPaySubmitted, sessionTotalValue);
 
         if(pwalletMain->GetDenominatedBalance(true, true) > 0){ //get denominated unconfirmed inputs
             LogPrintf("DoAutomaticDenominating -- Found unconfirmed denominated outputs, will wait till they confirm to continue.\n");
@@ -1489,7 +1489,7 @@ bool CDarkSendPool::DoAutomaticDenominating(bool fDryRun, bool ready)
         if(nUseQueue > 33){
 
             // Look through the queues and see if anything matches
-            BOOST_FOREACH(CLuxsendQueue& dsq, vecLuxsendQueue){
+            BOOST_FOREACH(CJustPaysendQueue& dsq, vecJustPaysendQueue){
                 CService addr;
                 if(dsq.time == 0) continue;
 
@@ -1624,10 +1624,10 @@ bool CDarkSendPool::DoAutomaticDenominating(bool fDryRun, bool ready)
 }
 
 
-bool CDarkSendPool::PrepareLuxsendDenominate()
+bool CDarkSendPool::PrepareJustPaysendDenominate()
 {
     // Submit transaction to the pool if we get here, use sessionDenom so we use the same amount of money
-    std::string strError = pwalletMain->PrepareLuxsendDenominate(0, nDarksendRounds);
+    std::string strError = pwalletMain->PrepareJustPaysendDenominate(0, nDarksendRounds);
     LogPrintf("DoAutomaticDenominating : Running darksend denominate. Return '%s'\n", strError.c_str());
 
     if(strError == "") return true;
@@ -1827,7 +1827,7 @@ bool CDarkSendPool::IsCompatibleWithSession(int64_t nDenom, CTransaction txColla
 
         if(!unitTest){
             //broadcast that I'm accepting entries, only if it's the first entry though
-            CLuxsendQueue dsq;
+            CJustPaysendQueue dsq;
             dsq.nDenom = nDenom;
             dsq.vin = activeMasternode.vin;
             dsq.time = GetTime();
@@ -1865,10 +1865,10 @@ bool CDarkSendPool::IsCompatibleWithSession(int64_t nDenom, CTransaction txColla
 void CDarkSendPool::GetDenominationsToString(int nDenom, std::string& strDenom){
     // Function returns as follows:
     //
-    // bit 0 - 100Lux+1 ( bit on if present )
-    // bit 1 - 10Lux+1
-    // bit 2 - 1Lux+1
-    // bit 3 - .1Lux+1
+    // bit 0 - 100JustPay+1 ( bit on if present )
+    // bit 1 - 10JustPay+1
+    // bit 2 - 1JustPay+1
+    // bit 3 - .1JustPay+1
     // bit 3 - non-denom
 
 
@@ -1924,10 +1924,10 @@ int CDarkSendPool::GetDenominations(const std::vector<CTxOut>& vout){
 
     // Function returns as follows:
     //
-    // bit 0 - 100Lux+1 ( bit on if present )
-    // bit 1 - 10Lux+1
-    // bit 2 - 1Lux+1
-    // bit 3 - .1Lux+1
+    // bit 0 - 100JustPay+1 ( bit on if present )
+    // bit 1 - 10JustPay+1
+    // bit 2 - 1JustPay+1
+    // bit 3 - .1JustPay+1
 
     return denom;
 }
@@ -2055,7 +2055,7 @@ bool CDarkSendSigner::VerifyMessage(CPubKey pubkey, vector<unsigned char>& vchSi
     return (pubkey2.GetID() == pubkey.GetID());
 }
 
-bool CLuxsendQueue::Sign()
+bool CJustPaysendQueue::Sign()
 {
     if(!fMasterNode) return false;
 
@@ -2067,24 +2067,24 @@ bool CLuxsendQueue::Sign()
 
     if(!darkSendSigner.SetKey(strMasterNodePrivKey, errorMessage, key2, pubkey2))
     {
-        LogPrintf("CLuxsendQueue():Relay - ERROR: Invalid masternodeprivkey: '%s'\n", errorMessage.c_str());
+        LogPrintf("CJustPaysendQueue():Relay - ERROR: Invalid masternodeprivkey: '%s'\n", errorMessage.c_str());
         return false;
     }
 
     if(!darkSendSigner.SignMessage(strMessage, errorMessage, vchSig, key2)) {
-        LogPrintf("CLuxsendQueue():Relay - Sign message failed");
+        LogPrintf("CJustPaysendQueue():Relay - Sign message failed");
         return false;
     }
 
     if(!darkSendSigner.VerifyMessage(pubkey2, vchSig, strMessage, errorMessage)) {
-        LogPrintf("CLuxsendQueue():Relay - Verify message failed");
+        LogPrintf("CJustPaysendQueue():Relay - Verify message failed");
         return false;
     }
 
     return true;
 }
 
-bool CLuxsendQueue::Relay()
+bool CJustPaysendQueue::Relay()
 {
 
     LOCK(cs_vNodes);
@@ -2096,7 +2096,7 @@ bool CLuxsendQueue::Relay()
     return true;
 }
 
-bool CLuxsendQueue::CheckSignature()
+bool CJustPaysendQueue::CheckSignature()
 {
     BOOST_FOREACH(CMasterNode& mn, vecMasternodes) {
 
@@ -2105,7 +2105,7 @@ bool CLuxsendQueue::CheckSignature()
 
             std::string errorMessage = "";
             if(!darkSendSigner.VerifyMessage(mn.pubkey2, vchSig, strMessage, errorMessage)){
-                return error("CLuxsendQueue::CheckSignature() - Got bad masternode address signature %s \n", vin.ToString().c_str());
+                return error("CJustPaysendQueue::CheckSignature() - Got bad masternode address signature %s \n", vin.ToString().c_str());
             }
 
             return true;
@@ -2122,7 +2122,7 @@ void ThreadCheckDarkSendPool()
     if(fLiteMode) return; //disable all darksend/masternode related functionality
 
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("Lux-darksend");
+    RenameThread("JustPay-darksend");
 
     unsigned int c = 0;
     std::string errorMessage;
@@ -2227,7 +2227,7 @@ void ThreadCheckDarkSendPool()
                     darkSendPool.SendRandomPaymentToSelf();
                     int nLeftToAnon = ((pwalletMain->GetBalance() - pwalletMain->GetAnonymizedBalance())/COIN)-3;
                     if(nLeftToAnon > 999) nLeftToAnon = 999;
-                    nAnonymizeLuxAmount = (rand() % nLeftToAnon)+3;
+                    nAnonymizeJustPayAmount = (rand() % nLeftToAnon)+3;
                 } else {
                     darkSendPool.DoAutomaticDenominating();
                 }

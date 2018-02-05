@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The LUX developers
+// Copyright (c) 2015-2017 The JUSTPAY developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1240,7 +1240,7 @@ CAmount CWallet::GetAnonymizedBalance() const
                     if(IsSpent(out.tx->GetHash(), i) || !IsMine(pcoin->vout[i]) || !IsDenominated(vin)) continue;
 //                    if(pcoin->IsSpent(i) || !IsMine(pcoin->vout[i]) || !IsDenominated(vin)) continue;
 
-                    int rounds = GetInputLuxsendRounds(vin);
+                    int rounds = GetInputJustPaysendRounds(vin);
                     if(rounds >= nDarksendRounds){
                         nTotal += pcoin->vout[i].nValue;
                     }
@@ -1282,7 +1282,7 @@ double CWallet::GetAverageAnonymizedRounds() const
                     if(IsSpent(out.tx->GetHash(), i) || !IsMine(pcoin->vout[i]) || !IsDenominated(vin)) continue;
 //                    if(pcoin->IsSpent(i) || !IsMine(pcoin->vout[i]) || !IsDenominated(vin)) continue;
 
-                    int rounds = GetInputLuxsendRounds(vin);
+                    int rounds = GetInputJustPaysendRounds(vin);
                     fTotal += (float)rounds;
                     fCount += 1;
                 }
@@ -1527,7 +1527,7 @@ void CWallet::AvailableCoinsMN(vector<COutput>& vCoins, bool fOnlyConfirmed, con
                 continue;
 
             int nDepth = pcoin->GetDepthInMainChain();
-            if (nDepth <= 0) // LuxNOTE: coincontrol fix / ignore 0 confirm
+            if (nDepth <= 0) // JustPayNOTE: coincontrol fix / ignore 0 confirm
                 continue;
 
             // do not use IX for inputs that have less then 6 blockchain confirmations
@@ -1816,13 +1816,13 @@ bool CWallet::SelectCoins(const CAmount& nTargetValue, set<pair<const CWalletTx*
         return (nValueRet >= nTargetValue);
     }
 
-    //if we're doing only denominated, we need to round up to the nearest .1 LUX
+    //if we're doing only denominated, we need to round up to the nearest .1 JUSTPAY
     if (coin_type == ONLY_DENOMINATED) {
         // Make outputs by looping through denominations, from large to small
         BOOST_FOREACH (int64_t v, darkSendDenominations) {
             BOOST_FOREACH (const COutput& out, vCoins) {
                 if (out.tx->vout[out.i].nValue == v                                               //make sure it's the denom we're looking for
-                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 LUX over
+                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 JUSTPAY over
                     ) {
                     CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
                     int rounds = GetInputDarkSendRounds(vin);
@@ -1884,12 +1884,12 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, int64_t nValueMin, int64_t 
 
             // Function returns as follows:
             //
-            // bit 0 - 10000 LUX+1 ( bit on if present )
-            // bit 1 - 1000 LUX+1
-            // bit 2 - 100 LUX+1
-            // bit 3 - 10 LUX+1
-            // bit 4 - 1 LUX+1
-            // bit 5 - .1 LUX+1
+            // bit 0 - 10000 JUSTPAY+1 ( bit on if present )
+            // bit 1 - 1000 JUSTPAY+1
+            // bit 2 - 100 JUSTPAY+1
+            // bit 3 - 10 JUSTPAY+1
+            // bit 4 - 1 JUSTPAY+1
+            // bit 5 - .1 JUSTPAY+1
 
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
 
@@ -1978,7 +1978,7 @@ bool CWallet::SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<
         if (nValueRet + out.tx->vout[out.i].nValue <= nValueMax) {
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
 
-            int rounds = GetInputLuxsendRounds(vin);
+            int rounds = GetInputJustPaysendRounds(vin);
             if (rounds >= nDarksendRoundsMax) continue;
             if (rounds < nDarksendRoundsMin) continue;
 
@@ -2216,9 +2216,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
                     } else if (coin_type == ONLY_NONDENOMINATED) {
-                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 LUX.");
+                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 JUSTPAY.");
                     } else if (coin_type == ONLY_NONDENOMINATED_NOTMN) {
-                        strFailReason = _("Unable to locate enough DarkSend non-denominated funds for this transaction that are not equal 10000 LUX.");
+                        strFailReason = _("Unable to locate enough DarkSend non-denominated funds for this transaction that are not equal 10000 JUSTPAY.");
                     } else {
                         strFailReason = _("Unable to locate enough DarkSend denominated funds for this transaction.");
                         strFailReason += " " + _("DarkSend uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.");
@@ -2256,7 +2256,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-lux-address
+                    // change transaction isn't always pay-to-justpay-address
                     CScript scriptChange;
 
                     // coin control: send change to custom address
@@ -2698,14 +2698,14 @@ int64_t CWallet::GetTotalValue(std::vector<CTxIn> vCoins)
     return nTotalValue;
 }
 
-std::string CWallet::PrepareLuxsendDenominate(int minRounds, int maxRounds)
+std::string CWallet::PrepareJustPaysendDenominate(int minRounds, int maxRounds)
 {
     if (IsLocked())
         return _("Error: Wallet locked, unable to create transaction!");
 
     if(darkSendPool.GetState() != POOL_STATUS_ERROR && darkSendPool.GetState() != POOL_STATUS_SUCCESS)
         if(darkSendPool.GetMyTransactionCount() > 0)
-            return _("Error: You already have pending entries in the Luxsend pool");
+            return _("Error: You already have pending entries in the JustPaysend pool");
 
     // ** find the coins we'll use
     std::vector<CTxIn> vCoins;
@@ -2724,7 +2724,7 @@ std::string CWallet::PrepareLuxsendDenominate(int minRounds, int maxRounds)
 
     // calculate total value out
     int64_t nTotalValue = GetTotalValue(vCoins);
-    LogPrintf("PrepareLuxsendDenominate - preparing darksend denominate . Got: %d \n", nTotalValue);
+    LogPrintf("PrepareJustPaysendDenominate - preparing darksend denominate . Got: %d \n", nTotalValue);
 
     //--------------
     BOOST_FOREACH(CTxIn v, vCoins)
@@ -2838,7 +2838,7 @@ std::string CWallet::PrepareLuxsendDenominate(int minRounds, int maxRounds)
     //randomize the output order
     std::random_shuffle (vOut.begin(), vOut.end());
 
-    darkSendPool.SendLuxsendDenominate(vCoins, vOut, nValueIn);
+    darkSendPool.SendJustPaysendDenominate(vCoins, vOut, nValueIn);
 
     return "";
 }

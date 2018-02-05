@@ -19,14 +19,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "LUX"
-            VALUE "FileDescription",    "LUX Core (OSS GUI client for LUX)"
+            VALUE "CompanyName",        "JUSTPAY"
+            VALUE "FileDescription",    "JUSTPAY Core (OSS GUI client for JUSTPAY)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "lux-qt"
+            VALUE "InternalName",       "justpay-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "lux-qt.exe"
-            VALUE "ProductName",        "LUX Core"
+            VALUE "OriginalFilename",   "justpay-qt.exe"
+            VALUE "ProductName",        "JUSTPAY Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

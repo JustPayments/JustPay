@@ -60,15 +60,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += luxd
+  bin_PROGRAMS += justpayd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += lux-cli lux-tx
+  bin_PROGRAMS += justpay-cli justpay-tx
 endif
 
 .PHONY: FORCE
-# lux core #
+# justpay core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -166,7 +166,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between luxd and lux-qt
+# server: shared between justpayd and justpay-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -197,7 +197,7 @@ libbitcoin_server_a_SOURCES = \
   $(JSON_H) \
   $(BITCOIN_CORE_H)
 
-# wallet: shared between luxd and lux-qt, but only linked
+# wallet: shared between justpayd and justpay-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -263,7 +263,7 @@ univalue_libbitcoin_univalue_a_SOURCES = \
   univalue/univalue_escapes.h \
   univalue/univalue.h
 
-# common: shared between luxd, and lux-qt and non-server tools
+# common: shared between justpayd, and justpay-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   allocators.cpp \
@@ -319,7 +319,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between lux-cli and lux-qt
+# cli: shared between justpay-cli and justpay-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -329,7 +329,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-luxd_LDADD = \
+justpayd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UNIVALUE) \
@@ -340,36 +340,36 @@ luxd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_WALLET
-luxd_LDADD += libbitcoin_wallet.a
+justpayd_LDADD += libbitcoin_wallet.a
 endif
-luxd_SOURCES = luxd.cpp
+justpayd_SOURCES = justpayd.cpp
 #
 
 if TARGET_WINDOWS
-luxd_SOURCES += luxd-res.rc
+justpayd_SOURCES += justpayd-res.rc
 endif
 
-luxd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-luxd_CPPFLAGS = $(BITCOIN_INCLUDES)
-luxd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+justpayd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+justpayd_CPPFLAGS = $(BITCOIN_INCLUDES)
+justpayd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# lux-cli binary #
-lux_cli_LDADD = \
+# justpay-cli binary #
+justpay_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
   $(SSL_LIBS) \
   $(CRYPTO_LIBS)
 
-lux_cli_SOURCES = \
-  lux-cli.cpp
+justpay_cli_SOURCES = \
+  justpay-cli.cpp
 
-lux_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+justpay_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
 
-# lux-tx binary #
-lux_tx_LDADD = \
+# justpay-tx binary #
+justpay_tx_LDADD = \
   $(LIBBITCOIN_UNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -378,15 +378,15 @@ lux_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-lux_tx_SOURCES = lux-tx.cpp
-lux_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+justpay_tx_SOURCES = justpay-tx.cpp
+justpay_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-lux_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+justpay_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-lux_cli_SOURCES += lux-cli-res.rc
+justpay_cli_SOURCES += justpay-cli-res.rc
 endif
-lux_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+justpay_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
