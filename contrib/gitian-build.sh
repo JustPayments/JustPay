@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/lux-project/lux
+url=https://github.com/justpay-project/justpay
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the lux, gitian-builder, gitian.sigs, and lux-detached-sigs.
+Run this script from the directory containing the justpay, gitian-builder, gitian.sigs, and justpay-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/lux-project/lux
+-u|--url	Specify the URL of the repository. Default is https://github.com/justpay-project/justpay
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/lux-project/gitian.sigs.git
-    git clone https://github.com/lux-project/lux-detached-sigs.git
+    git clone https://github.com/justpay-project/gitian.sigs.git
+    git clone https://github.com/justpay-project/justpay-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -247,7 +247,7 @@ then
 fi
 
 # Set up build
-pushd ./lux
+pushd ./justpay
 git fetch
 git checkout ${COMMIT}
 popd
@@ -256,7 +256,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./lux-binaries/${VERSION}
+	mkdir -p ./justpay-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -266,7 +266,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../lux/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../justpay/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -274,9 +274,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit lux=${COMMIT} --url lux=${url} ../lux/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../lux/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/lux-*.tar.gz build/out/src/lux-*.tar.gz ../lux-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit justpay=${COMMIT} --url justpay=${url} ../justpay/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../justpay/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/justpay-*.tar.gz build/out/src/justpay-*.tar.gz ../justpay-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -284,10 +284,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit lux=${COMMIT} --url lux=${url} ../lux/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../lux/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/lux-*-win-unsigned.tar.gz inputs/lux-win-unsigned.tar.gz
-	    mv build/out/lux-*.zip build/out/lux-*.exe ../lux-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit justpay=${COMMIT} --url justpay=${url} ../justpay/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../justpay/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/justpay-*-win-unsigned.tar.gz inputs/justpay-win-unsigned.tar.gz
+	    mv build/out/justpay-*.zip build/out/justpay-*.exe ../justpay-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -295,10 +295,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit lux=${COMMIT} --url lux=${url} ../lux/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../lux/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/lux-*-osx-unsigned.tar.gz inputs/lux-osx-unsigned.tar.gz
-	    mv build/out/lux-*.tar.gz build/out/lux-*.dmg ../lux-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit justpay=${COMMIT} --url justpay=${url} ../justpay/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../justpay/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/justpay-*-osx-unsigned.tar.gz inputs/justpay-osx-unsigned.tar.gz
+	    mv build/out/justpay-*.tar.gz build/out/justpay-*.dmg ../justpay-binaries/${VERSION}
 	fi
 	popd
 
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../lux/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../justpay/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../lux/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../justpay/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../lux/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../justpay/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../lux/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../justpay/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../lux/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../justpay/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -360,10 +360,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../lux/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../lux/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/lux-*win64-setup.exe ../lux-binaries/${VERSION}
-	    mv build/out/lux-*win32-setup.exe ../lux-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../justpay/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../justpay/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/justpay-*win64-setup.exe ../justpay-binaries/${VERSION}
+	    mv build/out/justpay-*win32-setup.exe ../justpay-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -371,9 +371,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../lux/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../lux/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/lux-osx-signed.dmg ../lux-binaries/${VERSION}/lux-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../justpay/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../justpay/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/justpay-osx-signed.dmg ../justpay-binaries/${VERSION}/justpay-${VERSION}-osx.dmg
 	fi
 	popd
 

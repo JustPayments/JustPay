@@ -1,4 +1,4 @@
-This is a system of building and caching dependencies necessary for building Lux.
+This is a system of building and caching dependencies necessary for building JustPay.
 
 There are several features that make it different from most similar systems:
 

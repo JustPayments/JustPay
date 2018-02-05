@@ -1,6 +1,6 @@
 [Protocol]
-exec=lux-qt '%u'
-protocol=lux
+exec=justpay-qt '%u'
+protocol=justpay
 input=none
 output=none
 helper=true

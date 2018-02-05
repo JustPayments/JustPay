@@ -17,7 +17,7 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The Lux Core developers</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The JustPay Core developers</string>
 
   <key>CFBundleShortVersionString</key>
   <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
@@ -29,10 +29,10 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>LUX-Qt</string>
+  <string>JUSTPAY-Qt</string>
 
   <key>CFBundleIdentifier</key>
-  <string>io.lux.Lux-Qt</string>
+  <string>io.justpay.JustPay-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -40,10 +40,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.lux.LuxPayment</string>
+      <string>io.justpay.JustPayPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>lux</string>
+        <string>justpay</string>
       </array>
     </dict>
   </array>
@@ -52,9 +52,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>io.lux.paymentrequest</string>
+      <string>io.justpay.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Lux payment request</string>
+      <string>JustPay payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -62,10 +62,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-lux-payment-request</string>
+        <string>application/x-justpay-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>luxpaymentrequest</string>
+          <string>justpaypaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -78,7 +78,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>io.lux.paymentrequest</string>
+        <string>io.justpay.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

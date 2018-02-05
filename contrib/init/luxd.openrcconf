@@ -1,25 +1,25 @@
-# /etc/conf.d/luxd: config file for /etc/init.d/luxd
+# /etc/conf.d/justpayd: config file for /etc/init.d/justpayd
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/lux/lux.conf"
+#BITCOIND_CONFIGFILE="/etc/justpay/justpay.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/luxd"
+#BITCOIND_PIDDIR="/var/run/justpayd"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/luxd.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/justpayd.pid"
 
-# Where to write luxd data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/luxd"
+# Where to write justpayd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/justpayd"
 
-# User and group to own luxd process
-#BITCOIND_USER="lux"
-#BITCOIND_GROUP="lux"
+# User and group to own justpayd process
+#BITCOIND_USER="justpay"
+#BITCOIND_GROUP="justpay"
 
-# Path to luxd executable
-#BITCOIND_BIN="/usr/bin/luxd"
+# Path to justpayd executable
+#BITCOIND_BIN="/usr/bin/justpayd"
 
-# Nice value to run luxd under
+# Nice value to run justpayd under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

@@ -19,7 +19,7 @@ if(CMAKE_CXX_FLAGS_RELWITHDEBINFO MATCHES DNDEBUG)
   string(REPLACE "-DNDEBUG" "" CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELEASE}")
 endif()
 
-project(LUX)
+project(JUSTPAY)
 
 set(OPENSSL_VER "1.0.2g")
 set(BDB_VER "4.8.30")
@@ -68,8 +68,8 @@ else()
 	)
 endif()
 
-# run configure if LUX_config.h doesn't exist, For Linux add "--with-incompatible-bdb"
-if (EXISTS	"${CMAKE_CURRENT_SOURCE_DIR}/src/config/LUX-config.h")
+# run configure if JUSTPAY_config.h doesn't exist, For Linux add "--with-incompatible-bdb"
+if (EXISTS	"${CMAKE_CURRENT_SOURCE_DIR}/src/config/JUSTPAY-config.h")
 else()	
 	IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	  execute_process(
@@ -272,17 +272,17 @@ add_library(bitcoin_crypto ${CRYPTO_C})
 
 link_directories(${BDB_ROOT_DIR}/lib)
 
-add_executable(LUX-cli ${CMAKE_CURRENT_SOURCE_DIR}/src/lux-cli.cpp)
-###add_executable(LUX-tx ${CMAKE_CURRENT_SOURCE_DIR}/src/lux-tx.cpp)
-add_executable(LUXd ${CMAKE_CURRENT_SOURCE_DIR}/src/luxd.cpp)
+add_executable(JUSTPAY-cli ${CMAKE_CURRENT_SOURCE_DIR}/src/justpay-cli.cpp)
+###add_executable(JUSTPAY-tx ${CMAKE_CURRENT_SOURCE_DIR}/src/justpay-tx.cpp)
+add_executable(JUSTPAYd ${CMAKE_CURRENT_SOURCE_DIR}/src/justpayd.cpp)
 
-target_link_libraries(lux-cli coin leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} pthread)
-###target_link_libraries(lux-tx coin secp256k1 bitcoin_crypto leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${ANL} pthread)
+target_link_libraries(justpay-cli coin leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} pthread)
+###target_link_libraries(justpay-tx coin secp256k1 bitcoin_crypto leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${ANL} pthread)
 
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries(luxd coin db_cxx db secp256k1 gmp bitcoin_crypto leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${ANL} pthread)
+	target_link_libraries(justpayd coin db_cxx db secp256k1 gmp bitcoin_crypto leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${ANL} pthread)
 else()
-	target_link_libraries(luxd coin db_cxx db secp256k1 bitcoin_crypto leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${ANL} pthread)
+	target_link_libraries(justpayd coin db_cxx db secp256k1 bitcoin_crypto leveldb ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${ANL} pthread)
 endif()
 
 #	miniupnpc pthread)

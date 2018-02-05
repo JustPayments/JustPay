@@ -1,6 +1,6 @@
-usr/local/bin/lux-qt usr/bin
+usr/local/bin/justpay-qt usr/bin
 share/pixmaps/bitcoin32.xpm usr/share/pixmaps
 share/pixmaps/bitcoin16.xpm usr/share/pixmaps
 share/pixmaps/bitcoin128.png usr/share/pixmaps
-debian/lux-qt.desktop usr/share/applications
-debian/lux-qt.protocol usr/share/kde4/services/
+debian/justpay-qt.desktop usr/share/applications
+debian/justpay-qt.protocol usr/share/kde4/services/
